@@ -40,6 +40,7 @@ function CourseCard({
           alt={course.title}
           fill
           sizes="(max-width: 680px) 100vw, (max-width: 960px) 50vw, 33vw"
+          unoptimized
         />
         <span className="absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/40 to-transparent px-3.5 pb-3 pt-10 text-[11px] font-semibold text-white">
           {course.category}
