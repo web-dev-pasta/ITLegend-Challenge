@@ -190,6 +190,20 @@ export default function PlayerExperience({
     });
   }
 
+  function scrollToSection(sectionId: string) {
+    const section = document.getElementById(sectionId);
+    if (!section) return;
+
+    const isMobile = window.matchMedia("(width < 48rem)").matches;
+    const video = document.querySelector<HTMLElement>(".player-video-area");
+    const videoHeight = video?.getBoundingClientRect().height ?? 0;
+    const stickyOffset = isMobile ? videoHeight + 16 : 0;
+    const top =
+      section.getBoundingClientRect().top + window.scrollY - stickyOffset;
+
+    window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+  }
+
   const videoUrls = [
     ...new Set(
       allLessons.flatMap((lesson) =>
@@ -275,31 +289,19 @@ export default function PlayerExperience({
           >
             <button
               className="inline-flex items-center gap-2 rounded border border-[#e5e6e9] px-3 py-2 text-xs text-[#626570] hover:border-[#41b69d]"
-              onClick={() =>
-                document
-                  .getElementById("course-content")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
+              onClick={() => scrollToSection("course-content")}
             >
               <BookOpen size={15} /> Content
             </button>
             <button
               className="inline-flex items-center gap-2 rounded border border-[#e5e6e9] px-3 py-2 text-xs text-[#626570] hover:border-[#41b69d]"
-              onClick={() =>
-                document
-                  .getElementById("course-topics")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
+              onClick={() => scrollToSection("course-topics")}
             >
               <BookOpen size={15} /> Topics
             </button>
             <button
               className="inline-flex items-center gap-2 rounded border border-[#e5e6e9] px-3 py-2 text-xs text-[#626570] hover:border-[#41b69d]"
-              onClick={() =>
-                document
-                  .getElementById("course-comments")
-                  ?.scrollIntoView({ behavior: "smooth" })
-              }
+              onClick={() => scrollToSection("course-comments")}
             >
               <MessageCircle size={15} /> Comments
             </button>
