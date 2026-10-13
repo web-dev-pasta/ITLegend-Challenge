@@ -3,6 +3,8 @@ import { League_Spartan, Poppins } from "next/font/google";
 import "./globals.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
+import { Analytics } from "@vercel/analytics/next";
+
 config.autoAddCss = false;
 const leagueSpartan = League_Spartan({
   preload: true,
@@ -26,6 +28,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${leagueSpartan.variable} ${poppins.variable}`}>
+      <Analytics />
       <body className={leagueSpartan.className}>{children}</body>
     </html>
   );
